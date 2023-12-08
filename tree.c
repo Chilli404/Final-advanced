@@ -30,9 +30,9 @@ HeapNode* buildHuffmanTree(int frequency[], MinHeap * minHeap) {
 } 
   
 void freeTree(HeapNode* root) {
-    if (root != NULL) {
-        freeTree(root->left);
-        freeTree(root->right);
-        free(root);
-    }
+	if (root != NULL) {
+        	freeTree(root->left);
+        	freeTree(root->right);
+        	free(root);
+    	}
 } 

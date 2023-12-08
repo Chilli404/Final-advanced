@@ -19,5 +19,5 @@
 Note: This tool has a --help command that can be used to view all commands
 
 Acknowledgements:
-Heap Code obtained from my heap code in HW 5
-Block text formatted from https://ascii.today/
+	Heap Code obtained from my heap code in HW 5
+	Block text formatted from https://ascii.today/

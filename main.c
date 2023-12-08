@@ -157,9 +157,9 @@ void printFrequencies(int frequency[]) {
 }
 
 void resetFrequency(int frequency[]) {
-    for (int i = 0; i < 128; ++i) {
-        frequency[i] = 0;
-    }
+	for (int i = 0; i < 128; ++i) {
+        	frequency[i] = 0;
+    	}
 }
 
 MinHeap *  buildHeap(int frequency[]) {

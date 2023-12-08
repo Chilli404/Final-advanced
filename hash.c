@@ -5,8 +5,9 @@ void insertHash(HashTable* table,  int key, char data[], int len);
 void printDict(HashTable * table);
 MinHeap *  buildHeap(int frequency[]);
 
+//Hashing algo
 int hashCode(int key) {
-   return key % SIZE;
+   	return key % SIZE;
 }
 
 // Function to create a dictionary mapping characters to their encoded values
@@ -95,13 +96,13 @@ void printDict(HashTable * table) {
 
 
 void freeTable(HashTable* table) {
-    for (int i = 0; i < SIZE; i++) {
-        if (table->array[i] != NULL) {
-            free(table->array[i]);
-        }
-    }
+	for (int i = 0; i < SIZE; i++) {
+        	if (table->array[i] != NULL) {
+            		free(table->array[i]);
+        	}
+    	}
 
-    free(table->array);
+    	free(table->array);
 
-    free(table);
+    	free(table);
 }
