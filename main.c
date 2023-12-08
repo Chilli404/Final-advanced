@@ -17,7 +17,8 @@ int main() {
   		printf("\nEnter command (import/encode/decode/dump/quit): ");
     		scanf("%s", command);
 		if (strcmp(command, "import") == 0) {
-		    	char filename[100];
+		    	if (table != NULL) freeTable(table);
+			char filename[100];
 		    	printf("Enter file name: ");
 		    	scanf("%s", filename);
 			int ret_value = compute_frequency(filename, frequency);
