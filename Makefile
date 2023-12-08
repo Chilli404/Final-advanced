@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-ggdb -g -fopenmp -I.
 DEPS = stuffs.h
-OBJ = heap.o tree.o main.o
+OBJ = hash.o heap.o tree.o main.o
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)

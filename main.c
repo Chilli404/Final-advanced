@@ -3,14 +3,16 @@ int compute_frequency(const char * filename, int frequency[]);
 void printFrequencies(int frequency[]);
 MinHeap* buildTree(int frequency[]); 
 void resetFrequency(int frequency[]);
+
+
 int main() {
-	char command[10] = "";
+	char command[20];
   	//Command Line Functionality 
 	int calcFreq = 0;
 	int frequency[128] = {0};
 	char currFile[10];
-	HeapNode * root = NULL;
-	MinHeap * minHeap = NULL;
+
+	HashTable * table = NULL;
 	while (1) {
   		printf("\nEnter command (import/encode/decode/dump/quit): ");
     		scanf("%s", command);
@@ -19,12 +21,10 @@ int main() {
 		    	printf("Enter file name: ");
 		    	scanf("%s", filename);
 			int ret_value = compute_frequency(filename, frequency);
+			
+			//if no errors in computing frequency
 			if (ret_value == 0) {	
-				printFrequencies(frequency);
-				minHeap = buildTree(frequency);
-				root = buildHuffmanTree(frequency, minHeap);
-				int arr[128], top = 0; 
-    				printCodes(root, arr, top);
+				table = createDict(frequency);
 			}else {
 				printf("Deleting retained frquencies\n");
 				resetFrequency(frequency);
@@ -57,10 +57,8 @@ int main() {
 			}
 
 		} else if (strcmp(command, "quit") == 0) {
-		    	if (root != NULL) freeTree(root);
-			if (minHeap != NULL) {
-				free(minHeap->array);
-				free(minHeap);
+			if(table != NULL) {
+				freeTable(table);
 			}
 			break;
 		} else {
@@ -110,13 +108,5 @@ void resetFrequency(int frequency[]) {
     }
 }
 
-MinHeap *  buildTree(int frequency[]) {
-	MinHeap * minHeap = createHeap(128);
-	for (int i = 0; i < 128; i++) {
-		insertToHeap(minHeap, i, frequency[i]);
-	}
-	printMinHeap(minHeap);
-	return minHeap;	
-}
 
 
