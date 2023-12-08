@@ -45,4 +45,7 @@ int isLeaf(HeapNode* root);
 //hash.c functions
 HashTable * createDict(int frequency[]);
 void freeTable(HashTable* table);
+void printDict(HashTable * table);
+
+
 

@@ -50,11 +50,11 @@ int main() {
 			}
 
 		} else if (strcmp(command, "dump") == 0) {
-		    	if(calcFreq == 1) {
+		    	if(table != NULL) {
 				printf("Dumping dictionary:\n");
-		    		// Implement dump functionality here
+				printDict(table);
 			}else {
-				printf("Error: Have not imported file yet\n");
+				printf("Error: No Dictionary Loaded\n");
 			}
 
 		} else if (strcmp(command, "quit") == 0) {

@@ -37,7 +37,6 @@ HashTable * createDict(int frequency[]) {
 	MinHeap * minHeap = buildHeap(frequency);
 	HeapNode * root = buildHuffmanTree(frequency, minHeap);
 	int arr[128], top = 0; 
-    	printCodes(root, arr, top);
 	
 
 	char arr2[100];
@@ -47,7 +46,6 @@ HashTable * createDict(int frequency[]) {
 	freeTree(root);
 	free(minHeap->array);
 	free(minHeap);
-	printDict(table);
 	return table;
 }
 
@@ -71,19 +69,26 @@ void insertHash(HashTable* table, int key, char data[], int len) {
 
 void printDict(HashTable * table) {
 	hashItem ** arr = table->array;	
-   	int special[2] = {10, 13};
+
+   	//Handling printing the special characters
+	int special[2] = {10, 13};
 	for(int i =0; i < 2; i++) {
 		int ind = hashCode(special[i]); 		
-      		if(arr[ind] != NULL) {
-         		printf(" (%c,%s)\n",arr[ind]->key, arr[ind]->data);
-      		}else {
+      		if(arr[ind] != NULL && i == 0) {
+         		printf("'\\n';%s\n", arr[ind]->data);
+   		} else if(arr[ind] != NULL && i == 1) {
+         		printf("'\\r';%s\n", arr[ind]->data);
+      		} else {
          		printf(" ~~ ");
    		}
+
 	}
+
+	//Handling regular characters
 	for(int i = 32; i<128; i++) {
 		int ind = hashCode(i); 		
       		if(arr[ind] != NULL) {
-         		printf(" (%c,%s)\n",arr[ind]->key, arr[ind]->data);
+         		printf("%c;%s\n",arr[ind]->key, arr[ind]->data);
       		} else{
          		printf(" ~~ ");
    		}
@@ -96,7 +101,6 @@ MinHeap *  buildHeap(int frequency[]) {
 	for (int i = 0; i < 128; i++) {
 		insertToHeap(minHeap, i, frequency[i]);
 	}
-	printMinHeap(minHeap);
 	return minHeap;	
 }
 
