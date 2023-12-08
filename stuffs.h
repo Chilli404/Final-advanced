@@ -43,9 +43,9 @@ void freeTree(HeapNode* root);
 int isLeaf(HeapNode* root);
  
 //hash.c functions
-HashTable * createDict(int frequency[]);
+HashTable * createDict(HeapNode * root);
 void freeTable(HashTable* table);
 void printDict(HashTable * table);
-
+int hashCode(int key);
 
 

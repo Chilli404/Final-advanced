@@ -1,12 +1,4 @@
 #include "stuffs.h"
-int viewMin(MinHeap * minHeap);
-
-unsigned concatenate(unsigned x, unsigned y) {
-    unsigned pow = 10;
-    while(y >= pow)
-        pow *= 10;
-    return x * pow + y;        
-}
 
 void swapNodes(HeapNode** a, HeapNode** b) {
     HeapNode* temp = *a;
@@ -51,6 +43,7 @@ HeapNode * createHeapNode(int node, int data) {
     return newNode;
 }
 
+//Create node for data and then insert node to heap
 void insertToHeap(MinHeap* minHeap, int node, int data) {
     if (minHeap->size == minHeap->capacity) {
         printf("Heap is full. Cannot insert more elements.\n");
@@ -69,6 +62,7 @@ void insertToHeap(MinHeap* minHeap, int node, int data) {
     }
 }
 
+//Insert node to heap
 void insertToHeapNode(MinHeap* minHeap, HeapNode * newNode) {
     if (minHeap->size == minHeap->capacity) {
         printf("Heap is full. Cannot insert more elements.\n");
@@ -79,13 +73,14 @@ void insertToHeapNode(MinHeap* minHeap, HeapNode * newNode) {
     minHeap->array[i] = newNode;
     minHeap->size++;
     
+
     while (i != 0 && minHeap->array[(i - 1) / 2]->data > minHeap->array[i]->data) {
         swapNodes(&minHeap->array[i], &minHeap->array[(i - 1) / 2]);
         i = (i - 1) / 2;
     }
 }
 
-
+//Obtains the minimum element from the heap
 HeapNode* getMin(MinHeap* minHeap) {
     if (minHeap->size == 0)
         return NULL;
@@ -99,14 +94,3 @@ HeapNode* getMin(MinHeap* minHeap) {
     return root;
 }
 
-int viewMin(MinHeap * minHeap) {
-    HeapNode* root = minHeap->array[0];
-    return root->data;
-}
-
-void printMinHeap(MinHeap* minHeap) {
-    printf("Min-Heap: ");
-    for (int i = 0; i < minHeap->size; i++)
-        printf("%d ", minHeap->array[i]->data);
-    printf("\n");
-}
